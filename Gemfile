@@ -34,6 +34,7 @@ gem 'devise-jwt'
 gem 'dotenv-rails'
 gem 'jsonapi-rails'
 gem 'rack-cors'
+gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,6 +68,8 @@ group :test do
   # customize
   gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'jsonapi-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
