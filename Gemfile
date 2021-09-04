@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise-jwt'
 gem 'dotenv-rails'
+gem 'jsonapi-rails'
 gem 'rack-cors'
 
 group :development, :test do
