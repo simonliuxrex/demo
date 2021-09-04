@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # customize
+gem 'devise'
+gem 'devise-jwt'
 gem 'dotenv-rails'
 
 group :development, :test do
