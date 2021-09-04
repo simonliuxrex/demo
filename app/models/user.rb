@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  balance                :float(24)        default(0.0), not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  remember_created_at    :datetime
@@ -21,11 +22,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-  def transfer(amount, user)
-
+  def transfer(amount, target_user)
+    raise InvalidTarget if target_user == self
+    ActiveRecord::Base.transaction do
+      self.lock!
+      self.balance -= amount
+      target_user.lock!
+      target_user.balance += amount
+      raise InsufficientFund if self.balance < 0.0
+      self.save!
+      target_user.save!
+    end
   end
 
-  def withdraw(amount)
-
-  end
 end
+class InsufficientFund < StandardError; end
+class InvalidTarget < StandardError; end
