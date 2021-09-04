@@ -42,6 +42,20 @@ describe RegistrationsController, type: :request do
 
     it 'returns 400' do
       expect(response.status).to eq(400)
+      expected =
+      {
+        "errors"=>
+          [
+            {
+              "title"=>"Invalid email",
+              "detail"=>"Email has already been taken",
+              "source"=>{}
+            }
+          ],
+          "jsonapi"=>{"version"=>"1.0"
+        }
+      }
+      expect(JSON.parse(response.body)).to eq(expected)
     end
   end
 
