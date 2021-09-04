@@ -66,6 +66,7 @@ group :test do
 
   # customize
   gem 'database_cleaner-active_record'
+  gem 'factory_bot_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
