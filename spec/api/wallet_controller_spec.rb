@@ -17,13 +17,13 @@ describe Api::WalletController, type: :request do
         }
     end
 
-    it 'Normal transfer' do
+    it 'InsufficientFund' do
       expect(response.status).to eq(400)
       expect(response.body).to eq("{\"errors\":[{\"status\":\"400\",\"title\":\"InsufficientFund\"}]}")
     end
   end
 
-  context 'InsufficientFund' do
+  context 'Normal transfer' do
     let (:user_1) { create(:user, balance: 100) }
     let (:user_2) { create(:user) }
     before do
